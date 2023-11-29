@@ -1,0 +1,92 @@
+{% include 'dashborad/header.html' %}
+{% load static %}
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>General Tables</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Tables</li>
+        <li class="breadcrumb-item active">General</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+
+            <div class="row">
+              <div class="col-md-10">
+                <h3>
+                  Client Reviews
+                </h3>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <!-- Bordered Table -->
+            <table class="table table-bordered  table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">User-Name</th>
+                  <th scope="col">Brand Name</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Status Change</th>
+                 
+
+                </tr>
+              </thead>
+              {% for testimonial in testimonials %}
+              <tbody>
+                <tr>
+                  <th scope="row">{{testimonial.id}}</th>
+                  <td>{{testimonial.user}}</td>
+                  <td>{{testimonial.client_name}}</td>
+                  <td>{{testimonial.client_des}}</td>
+                  <td><img src="{{testimonial.client_image}}" width="100" height="100"></td>
+                  <td>
+                    {% if testimonial.status == 1 %}
+                    <span class="text-success">Active</span>
+                    {% else %}
+                    <span class="text-danger">Inactive</span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn btn-primary" type="button" data-bs-toggle="dropdown">
+                        <i class="fa fa-bars text-white"></i>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        {% if testimonial.status == 0 %}
+                        <li><a class="dropdown-item" href="{% url 'Testimonialstatus' testimonial.id 1 %}"><i
+                              class="text-success fa fa-check"></i>Active</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{% url 'Testimonialstatus' testimonial.id 0 %}"><i
+                              class="text-danger fa fa-user-minus"></i>In-Active</a></li>
+                        {% endif %}
+                      </ul>
+
+                    </div>
+                  </td>
+                  
+              </tbody>
+              {% endfor %}
+            </table>
+            <!-- End Bordered Table -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main><!-- End #main -->
+
+{% include 'dashborad/footer.html' %}

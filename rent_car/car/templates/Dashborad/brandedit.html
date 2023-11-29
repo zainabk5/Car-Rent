@@ -1,0 +1,43 @@
+{% include 'dashborad/header.html' %}
+{% load static %}
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Brand Edits</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Forms</li>
+          <li class="breadcrumb-item active">Validation</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+
+              <!-- Custom Styled Validation -->
+              <form class="row g-3 needs-validation" novalidate method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-md-6">
+                  <label for="validationCustom01" class="form-label">Brand Name</label>
+                  <input type="text" name="name" class="form-control" id="validationCustom01" value="{{brand.brand_name}}" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                  <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+              </form><!-- End Custom Styled Validation -->
+
+            </div>
+          </div>
+          </div>
+        </main>
+          {% include 'dashborad/footer.html' %}

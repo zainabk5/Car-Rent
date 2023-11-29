@@ -1,0 +1,79 @@
+{% include 'dashborad/header.html' %}
+{% load static %}
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Brand Edits</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Forms</li>
+          <li class="breadcrumb-item active">Validation</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+
+              <!-- Custom Styled Validation -->
+              <form class="row g-3 needs-validation" novalidate method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-md-4">
+                  <label for="validationCustom04" class="form-label">Brand Name</label>
+                  <select class="form-select" name="brand_name" id="validationCustom04" required>
+                    {% for brand in brands %}
+                    <option value="{{brand.id}}" {% if brand.id == vehicle.brand %}selected{% endif %}>{{ brand.brand_name }}</option>
+                    {% endfor %}
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid state.
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationCustom01" class="form-label">Vehicle Name</label>
+                  <input type="text" name="name" class="form-control" id="validationCustom01" value="{{vehicle.car_name}}" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationCustom01" class="form-label">Vehicle Image</label>
+                  <input type="file" name="image" class="form-control" id="validationCustom01" value="" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <img src="{{vehicle.car_image.url}}" width="100" height="100">
+              </div>
+                <div class="col-md-6">
+                  <label for="validationCustom01" class="form-label">Vehicle price</label>
+                  <input type="number" name="price" class="form-control" id="validationCustom01" value="{{vehicle.car_price}}" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationCustom01" class="form-label">Vehicle Description</label>
+                  <input type="text" name="des" class="form-control" id="validationCustom01" value="{{vehicle.car_des}}" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                
+                  <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+              </form><!-- End Custom Styled Validation -->
+
+            </div>
+          </div>
+          </div>
+        </main>
+          {% include 'dashborad/footer.html' %}

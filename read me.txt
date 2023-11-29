@@ -1,0 +1,10 @@
+Website
+http://127.0.0.1:8000
+user login
+email= user@gmail.com
+password=12345
+Admin Url
+http://127.0.0.1:8000/login
+admin login 
+email= admin@gmail.com
+password =1234567
